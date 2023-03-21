@@ -4,9 +4,9 @@ import css from 'components/Modal/Modal.module.css';
 
 export default class Modal extends Component {
     static propTypes = {
-        url: PropTypes.string.isRequired,
-        onClose: PropTypes.func.isRequired,
-    };
+        toggleModal: PropTypes.func.isRequired,
+        largeImage: PropTypes.string.isRequired,
+      };
 
     state = {}
 
@@ -19,13 +19,13 @@ export default class Modal extends Component {
 
     clickBackdrop = event => {
         if (event.target === event.currentTarget) {
-            this.props.onClose();
+            this.props.toggleModal();
         }
     }
 
     clickEsc = event => {
         if (event.code === 'Escape') {
-            this.props.onClose();
+            this.props.toggleModal();
         }
     }
 
@@ -34,7 +34,7 @@ export default class Modal extends Component {
         return (
             <div className={css.overlay} onClick={this.clickBackdrop}>
                 <div className={css.modal}>
-                    <img src={this.props.url} alt="" />
+                    <img src={this.props.largeImage} alt="" />
                 </div>
             </div>
         )
